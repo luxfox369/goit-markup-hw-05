@@ -12,7 +12,7 @@
   /* шрифти проекта  */
   --prime-font-family--: "Roboto", sans-serif;
   --second-font-family--: "Raleway", sans-serif;
-  /* ефекти переходів */
+  /* Властивості для переходів */
   --c--: color;
   --f--: fill;
   --bgc--: background-color;
@@ -180,7 +180,16 @@ a {
   position: relative;
   color: var(--title-ccolor--);
   padding: 32px 0px;
+   transition: var(--c--) var(--dur--) var(--func--);
 }
+/* hover на посиланнях в навігації */
+.header-nav-link:focus,
+.header-nav-link:hover,
+.header-contact-link:focus,
+.header-contact-link:hover {
+  color: var(--accent-color--);
+}
+
 .header-nav-link.current:after {
   position: absolute;
   bottom: 0;
@@ -191,6 +200,9 @@ a {
   height: 4px; /*висота риски*/
   border-radius: 4px; /*заокруглена*/
   background-color: var(--accent-color--);
+  /* opacity:0; */
+  /* transition: opacity 300ms ease-in-out; */
+  /* transform:scale(1.5) 300ms ease-in-out; */
 }
 
 /* підсвітка посилання активної сторінки */
@@ -215,6 +227,8 @@ a {
   color: var(--text-color--);
   padding: 32px 0px;
   gap: 10px;
+  transition: var(--f--) var(--dur--) var(--func--),
+              var(--c--) var(--dur--) var(--func--);
 }
 /* колір  від  link-батька */
 .contact-icon {
@@ -226,18 +240,10 @@ a {
 .header-contact-link:hover .contact-icon {
   fill: var(--accent-color--);
   color: var(--accent-color--);
-  transition: var(--f--) var(--dur--) var(--func--),
-    var(--c--) var(--dur--) var(--func--);
+  
 }
 
-/* hover на посиланнях в навігації */
-.header-nav-link:focus,
-.header-nav-link:hover,
-.header-contact-link:focus,
-.header-contact-link:hover {
-  color: var(--accent-color--);
-  transition: var(--c--) var(--dur--) var(--func--);
-}
+
 
 /* стилі index */
 /* секція hero */
@@ -275,12 +281,14 @@ a {
   border-radius: 4px;
   display: block;
   margin: 0 auto; /*вертик забирає горизонтально центрує*/
+  transition: var(--bgc--) var(--dur--) var(--func--);
 }
 .hero-button:focus,
 .hero-button:hover {
   background-color: #188ce8;
-  transition: var(--bgc--) var(--dur--) var(--func--);
+  
 }
+/* підкладка для модального вікна */
 .backdrop {
   position: fixed;
   top: 0;
@@ -390,13 +398,15 @@ a {
 .deal-list-item {
   flex-basis: calc((100% - 30px * 2) / 3);
 }
-.wrapper {
+/* обгортка для фоток чим ми займаємось */
+.wrapper { /*відносно нього overlay-box з текстом на темному фоні*/
   position: relative;
 }
 .deal-list-img {
   width: 370px;
   max-height: 294px;
 }
+/* блок з текстом */
 .overlay-box {
   position: absolute;
   width: 100%;
@@ -404,11 +414,11 @@ a {
   left: 0;
   background-color: rgba(47, 48, 58, 0.8);
 }
+/* сам текст  */
 .overlay-text {
   font-weight: 700;
   font-size: 14px;
   line-height: calc(16 / 14);
-
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #ffffff;
@@ -499,6 +509,8 @@ a {
   border-radius: 50%;
   /* padding: 12px; */
   color: var(--icon-color--);
+  transition: var(--c--) var(--dur--) var(--func--),
+              var(--bgc--) var(--dur--) var(--func--);
 }
 /* колір іконка соцмереж наслідує від кнопки-батька*/
 .social-link-icon {
@@ -509,8 +521,7 @@ a {
 .social-link-button:focus {
   background-color: var(--accent-color--);
   color: var(--prime-bg-color--);
-  transition: var(--c--) var(--dur--) var(--func--),
-    var(--bgc--) var(--dur--) var(--func--);
+  
 }
 
 /* секція Постійні клієнти */
@@ -538,6 +549,8 @@ a {
   color: var(--icon-color--);
   border: 1px solid var(--icon-color--);
   border-radius: 4px;
+  transition: var(--c--) var(--dur--) var(--func--),
+              var(--boc--) var(--dur--) var(--func--);
 }
 .client-icon {
   fill: currentColor;
@@ -547,8 +560,7 @@ a {
 .client-link:focus {
   border-color: var(--accent-color--);
   color: var(--accent-color--);
-  transition: var(--c--) var(--dur--) var(--func--),
-    var(--boc--) var(--dur--) var(--func--);
+  
 }
 
 /* porfolio section */
@@ -580,7 +592,8 @@ a {
   background: var(--button-bg-color--);
   border-radius: 4px;
   padding: 6px 22px;
-  /* margin:0; */
+  transition: var(--c--) var(--dur--) var(--func--),
+              var(--bgc--) var(--dur--) var(--func--);
 }
 .filter-button.all {
   padding: 6px 25px;
@@ -591,8 +604,6 @@ a {
 .filter-button:hover {
   color: var(--prime-bg-color--);
   background-color: var(--accent-color--);
-  transition: var(--c--) var(--dur--) var(--func--),
-    var(--bgc--) var(--dur--) var(--func--);
 }
 
 /* projects */
@@ -627,7 +638,7 @@ a {
   color: var(--text-color--);
 }
 
-/* проекти в рядок з переносом по 4 з gap 30зч */
+/* проекти в рядок з переносом по 4 з gap 30px */
 .projects-list {
   display: flex;
   flex-wrap: wrap;
@@ -638,12 +649,12 @@ a {
   background: #ffffff;
   /* flex-basis: calc((100%-30px * 2) / 3); */
   margin-bottom: 30px;
+  transition: var(--flt--) var(--dur--) var(--func--);
 }
 .project-item:hover,
 .project-item:focus {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transition: var(--flt--) var(--dur--) var(--func--);
-}
+ }
 /* кожному 3му забрати правий маржин */
 /* .project-item:nth-child(3n){
  margin-right:0px;
@@ -678,14 +689,14 @@ a {
   font-size: 14px;
   line-height: calc(21 / 14);
   letter-spacing: 0.03em;
+  transition: var(--c--) var(--dur--) var(--func--);
 }
+/* реакція на наведення мишки або клавіатури на любий лінк футера */
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--accent-color--);
+ }
 
-/* .footer-list-item {
-  font-style: normal;
-  font-size: 14px;
-  line-height: calc(24 / 14);
-  letter-spacing: 0.03em;
-} */
 
 .footer-list-item:not(:last-child) {
   margin-bottom: 9px;
@@ -694,18 +705,14 @@ a {
 /* адреса  */
 .footer-link.map {
   color: var(--prime-bg-color--);
+  transition: var(--c--) var(--dur--) var(--func--);
 }
 
-/* реакція на наведення мишки або клавіатури на любий лінк футера */
-.footer-link:hover,
-.footer-link:focus {
+
+.footer-link.map:hover,
+.footer-link.map:focus {
   color: var(--accent-color--);
-  transition: var(--c--) var(--dur--) var(--func--);
-}
-.footer-link-map:hover,
-.footer-link-map:focus {
-  color: var(--accent-color--);
-  transition: var(--c--) var(--dur--) var(--func--);
+  
 }
 .footer-combine {
   display: flex;
@@ -732,9 +739,11 @@ a {
 .social-link-button.footer {
   color: var(--prime-bg-color--);
   background: rgba(255, 255, 255, 0.1);
+  transition: var(--bgc--) var(--dur--)var(--func--);
+  
 }
 .social-link-button.footer:hover,
 .social-link-button.footer:focus {
   background-color: var(--accent-color--);
-  transition: var(--bgc--) var(--dur--) var(--func--);
+ 
 }
