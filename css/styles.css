@@ -180,7 +180,7 @@ a {
   position: relative;
   color: var(--title-ccolor--);
   padding: 32px 0px;
-   transition: var(--c--) var(--dur--) var(--func--);
+  transition: var(--c--) var(--dur--) var(--func--);
 }
 /* hover на посиланнях в навігації */
 .header-nav-link:focus,
@@ -200,11 +200,15 @@ a {
   height: 4px; /*висота риски*/
   border-radius: 4px; /*заокруглена*/
   background-color: var(--accent-color--);
+}
+.header-nav-link.current:hover:after {
   /* opacity:0; */
   /* transition: opacity 300ms ease-in-out; */
-  /* transform:scale(1.5) 300ms ease-in-out; */
+  /* transform:rotate(-45deg) ; */
+/* 
+  transform: translateY(-10px); */
+  transform: scaleX(2);
 }
-
 /* підсвітка посилання активної сторінки */
 .current {
   color: var(--accent-color--);
@@ -228,7 +232,7 @@ a {
   padding: 32px 0px;
   gap: 10px;
   transition: var(--f--) var(--dur--) var(--func--),
-              var(--c--) var(--dur--) var(--func--);
+    var(--c--) var(--dur--) var(--func--);
 }
 /* колір  від  link-батька */
 .contact-icon {
@@ -240,10 +244,7 @@ a {
 .header-contact-link:hover .contact-icon {
   fill: var(--accent-color--);
   color: var(--accent-color--);
-  
 }
-
-
 
 /* стилі index */
 /* секція hero */
@@ -286,7 +287,6 @@ a {
 .hero-button:focus,
 .hero-button:hover {
   background-color: #188ce8;
-  
 }
 /* підкладка для модального вікна */
 .backdrop {
@@ -296,6 +296,7 @@ a {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
 }
 /* модальне вікно */
 .modal {
@@ -399,7 +400,8 @@ a {
   flex-basis: calc((100% - 30px * 2) / 3);
 }
 /* обгортка для фоток чим ми займаємось */
-.wrapper { /*відносно нього overlay-box з текстом на темному фоні*/
+.wrapper {
+  /*відносно нього overlay-box з текстом на темному фоні*/
   position: relative;
 }
 .deal-list-img {
@@ -510,7 +512,7 @@ a {
   /* padding: 12px; */
   color: var(--icon-color--);
   transition: var(--c--) var(--dur--) var(--func--),
-              var(--bgc--) var(--dur--) var(--func--);
+    var(--bgc--) var(--dur--) var(--func--);
 }
 /* колір іконка соцмереж наслідує від кнопки-батька*/
 .social-link-icon {
@@ -521,7 +523,6 @@ a {
 .social-link-button:focus {
   background-color: var(--accent-color--);
   color: var(--prime-bg-color--);
-  
 }
 
 /* секція Постійні клієнти */
@@ -550,7 +551,7 @@ a {
   border: 1px solid var(--icon-color--);
   border-radius: 4px;
   transition: var(--c--) var(--dur--) var(--func--),
-              var(--boc--) var(--dur--) var(--func--);
+    var(--boc--) var(--dur--) var(--func--);
 }
 .client-icon {
   fill: currentColor;
@@ -560,7 +561,6 @@ a {
 .client-link:focus {
   border-color: var(--accent-color--);
   color: var(--accent-color--);
-  
 }
 
 /* porfolio section */
@@ -593,7 +593,7 @@ a {
   border-radius: 4px;
   padding: 6px 22px;
   transition: var(--c--) var(--dur--) var(--func--),
-              var(--bgc--) var(--dur--) var(--func--);
+    var(--bgc--) var(--dur--) var(--func--);
 }
 .filter-button.all {
   padding: 6px 25px;
@@ -612,6 +612,37 @@ a {
   width: 370px;
   height: 294px;
 }
+/* тумба для малюнка що закриє overlay при hover */
+.thumb{
+  position:relative;
+  overflow:hidden;
+}
+/* вікно з текстом при hover проекта замість картинки */
+.overlay {
+position:absolute;
+top:0;
+left:0;
+width:100%;/* на весь img*/
+height:100%;
+display:flex;
+align-items: center;
+background-color:var(--accent-color--);
+/* outline: 2px solid red; */
+transform:translateY(100%);
+transition-property: transform;
+transition-duration: 250ms;
+transition-timing-function: linear;
+}
+.overlay-text-project {
+  text-align:left;
+  font-size: 16px;
+  line-height: calc(30 / 16);
+  letter-spacing: 0.03em;
+  color: var(--prime-bg-color--);
+  padding-left: 24px;
+  padding-right:24px;
+}
+
 
 /* згрупування під карткою портфоліо */
 .group-portfolio {
@@ -654,7 +685,12 @@ a {
 .project-item:hover,
 .project-item:focus {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
- }
+}
+.project-item:hover .overlay {
+  transform:translatey(0);
+}
+
+
 /* кожному 3му забрати правий маржин */
 /* .project-item:nth-child(3n){
  margin-right:0px;
@@ -695,8 +731,7 @@ a {
 .footer-link:hover,
 .footer-link:focus {
   color: var(--accent-color--);
- }
-
+}
 
 .footer-list-item:not(:last-child) {
   margin-bottom: 9px;
@@ -708,11 +743,9 @@ a {
   transition: var(--c--) var(--dur--) var(--func--);
 }
 
-
 .footer-link.map:hover,
 .footer-link.map:focus {
   color: var(--accent-color--);
-  
 }
 .footer-combine {
   display: flex;
@@ -739,11 +772,9 @@ a {
 .social-link-button.footer {
   color: var(--prime-bg-color--);
   background: rgba(255, 255, 255, 0.1);
-  transition: var(--bgc--) var(--dur--)var(--func--);
-  
+  transition: var(--bgc--) var(--dur--) var(--func--);
 }
 .social-link-button.footer:hover,
 .social-link-button.footer:focus {
   background-color: var(--accent-color--);
- 
 }
