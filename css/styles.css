@@ -12,6 +12,14 @@
   /* шрифти проекта  */
   --prime-font-family--: "Roboto", sans-serif;
   --second-font-family--: "Raleway", sans-serif;
+  /* ефекти переходів */
+  --c--: color;
+  --f--: fill;
+  --bgc--: background-color;
+  --boc--: border-color;
+  --flt--: filter;
+  --dur--: 250ms;
+  --func--: cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* глобальні налаштування */
 body {
@@ -155,8 +163,6 @@ a {
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  /* padding-top: 24px;
-  padding-bottom: 25px; */
 }
 /* Навігація по сторінках сайта */
 /* навігація  в header  flex container*/
@@ -171,9 +177,22 @@ a {
 }
 /* padding link збільшує зону клікабельності */
 .header-nav-link {
+  position: relative;
   color: var(--title-ccolor--);
   padding: 32px 0px;
 }
+.header-nav-link.current:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  display: block; /*даємо геометрію бо псевдокласи рядкові ел-ти*/
+  width: 100%; /*риска шириною батька header-nav-link*/
+  height: 4px; /*висота риски*/
+  border-radius: 4px; /*заокруглена*/
+  background-color: var(--accent-color--);
+}
+
 /* підсвітка посилання активної сторінки */
 .current {
   color: var(--accent-color--);
@@ -190,32 +209,34 @@ a {
 
 /* вигляд мейл і телефон */
 .header-contact-link {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-color--);
   padding: 32px 0px;
-  gap:10px;
+  gap: 10px;
 }
 /* колір  від  link-батька */
 .contact-icon {
-  display:block;
+  display: block;
   fill: currentColor;
- }
+}
 /* hover/focus на контакти в header */
-.header-contact-link:focus ,
+.header-contact-link:focus,
 .header-contact-link:hover .contact-icon {
- 
   fill: var(--accent-color--);
-  color:var(--accent-color--);
+  color: var(--accent-color--);
+  transition: var(--f--) var(--dur--) var(--func--),
+    var(--c--) var(--dur--) var(--func--);
 }
 
 /* hover на посиланнях в навігації */
 .header-nav-link:focus,
 .header-nav-link:hover,
-.header-contact0link:focus,
+.header-contact-link:focus,
 .header-contact-link:hover {
   color: var(--accent-color--);
+  transition: var(--c--) var(--dur--) var(--func--);
 }
 
 /* стилі index */
@@ -257,7 +278,52 @@ a {
 }
 .hero-button:focus,
 .hero-button:hover {
-  background: #188ce8;
+  background-color: #188ce8;
+  transition: var(--bgc--) var(--dur--) var(--func--);
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+/* модальне вікно */
+.modal {
+  position: absolute;
+  width: 528px;
+  height: 581px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+/* toggle */
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-text {
+  padding-top: 40px;
+}
+/* кнопка закриття в модальному вікні */
+.btn-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #fff; /*фон кнопки*/
+  display: block;
+  padding: 0;
+}
+.icon-close {
+  /* background-color:inherit; */
+  fill: #fff; /*фон іконки*/
+  /* хрестик,коло stroke :/*var(--button-bg-color--); */
 }
 
 /* секція Особливості */
@@ -324,11 +390,33 @@ a {
 .deal-list-item {
   flex-basis: calc((100% - 30px * 2) / 3);
 }
-/* підозрюю що рохміри img треба пропорційно до різних екранів */
+.wrapper {
+  position: relative;
+}
 .deal-list-img {
   width: 370px;
   max-height: 294px;
 }
+.overlay-box {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+.overlay-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+  padding: 27px;
+  text-align: center;
+}
+
 /* .deal-list-item:not(:last-child) {
   margin-right:30px;
  } */
@@ -416,11 +504,13 @@ a {
 .social-link-icon {
   fill: currentColor;
 }
-/* реакція посилання на наведення */
+/* реакція  на наведення на іконки соцмерех*/
 .social-link-button:hover,
 .social-link-button:focus {
   background-color: var(--accent-color--);
   color: var(--prime-bg-color--);
+  transition: var(--c--) var(--dur--) var(--func--),
+    var(--bgc--) var(--dur--) var(--func--);
 }
 
 /* секція Постійні клієнти */
@@ -429,7 +519,7 @@ a {
   padding-bottom: 94px;
 }
 .title-client {
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 .client-list {
   display: flex;
@@ -457,6 +547,8 @@ a {
 .client-link:focus {
   border-color: var(--accent-color--);
   color: var(--accent-color--);
+  transition: var(--c--) var(--dur--) var(--func--),
+    var(--boc--) var(--dur--) var(--func--);
 }
 
 /* porfolio section */
@@ -499,6 +591,8 @@ a {
 .filter-button:hover {
   color: var(--prime-bg-color--);
   background-color: var(--accent-color--);
+  transition: var(--c--) var(--dur--) var(--func--),
+    var(--bgc--) var(--dur--) var(--func--);
 }
 
 /* projects */
@@ -548,6 +642,7 @@ a {
 .project-item:hover,
 .project-item:focus {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: var(--flt--) var(--dur--) var(--func--);
 }
 /* кожному 3му забрати правий маржин */
 /* .project-item:nth-child(3n){
@@ -605,10 +700,12 @@ a {
 .footer-link:hover,
 .footer-link:focus {
   color: var(--accent-color--);
+  transition: var(--c--) var(--dur--) var(--func--);
 }
 .footer-link-map:hover,
 .footer-link-map:focus {
   color: var(--accent-color--);
+  transition: var(--c--) var(--dur--) var(--func--);
 }
 .footer-combine {
   display: flex;
@@ -639,4 +736,5 @@ a {
 .social-link-button.footer:hover,
 .social-link-button.footer:focus {
   background-color: var(--accent-color--);
+  transition: var(--bgc--) var(--dur--) var(--func--);
 }

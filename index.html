@@ -71,7 +71,24 @@
         <h1 class="title-first hero-title">
           Ефективні рішення для вашого бізнесу
         </h1>
-        <button class="hero-button btn" type="button">Замовити послугу</button>
+        <button data-modal-open class="hero-button btn" type="button">
+          Замовити послугу
+        </button>
+        <div class="backdrop is-hidden" data-modal>
+          <div class="modal">
+            <p class="modal-text">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum
+              perspiciatis fugit, autem blanditiis itaque eligendi voluptatum
+              explicabo, debitis numquam non molestiae amet iure rem placeat sit
+              deserunt velit natus labore.
+            </p>
+            <button data-modal-close class="btn-close btn">
+              <svg class="icon-close" width="30" height="30">
+                <use href="./images/icons.svg#close"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
       </section>
       <!-- Особливості -->
       <section class="feature-section section">
@@ -135,26 +152,35 @@
         <div class="container deal">
           <h2 class="title-second deal-title">Чим ми займаємося</h2>
           <ul class="deal-list">
-            <li class="deal-list-item">
+            <li class="deal-list-item wrapper">
               <img
                 class="deal-list-img"
                 src="./images/view1.jpg"
                 alt="Найкращі алгоритми"
               />
+              <div class="overlay-box">
+                <p class="overlay-text">Десктопні додатки</p>
+              </div>
             </li>
-            <li class="deal-list-item">
+            <li class="deal-list-item wrapper">
               <img
                 class="deal-list-img"
                 src="./images/view2.jpg"
-                alt="Адаптуємо до різних дівайсів "
+                alt="Адаптуємо до різних дівайсів"
               />
+              <div class="overlay-box">
+                <p class="overlay-text">Мобільні додатки</p>
+              </div>
             </li>
-            <li class="deal-item">
+            <li class="deal-item wrapper">
               <img
                 class="deal-list-img"
                 src="./images/view3.jpg"
                 alt="Професійний дизайн"
               />
+              <div class="overlay-box">
+                <p class="overlay-text">Дизайнерські рішення</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -439,5 +465,6 @@
         </div>
       </div>
     </footer>
+    <script src="./js/modal.js"></script>
   </body>
 </html>
