@@ -372,8 +372,8 @@ a {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  transition:var(--tr--) var(--dur--) var(--func--) ,
-             var(--tr--) var(--dur--) var(--func--);
+  transition:var(--tr--) 500ms var(--func--) ,
+             var(--tr--) 500ms var(--func--);
   
  
 }
@@ -752,7 +752,7 @@ a {
 }
 
 .project-item:hover .overlay {
-  transform: translatey(0) rotateY(360deg);
+  transform: perspective(300px)translatey(0) rotateY(360deg);
   
 }
 /* тумба для малюнка що закриє overlay при hover */
@@ -771,7 +771,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: var(--accent-color--);
-  transform: translateY(101%) rotateY(5deg);
+  transform: perspective(300px)translateY(101%) rotateY(5deg);
   transition: var(--tr--) 1000ms var(--func--) ,
               var(--tr--) 1000ms var(--func--) ;
 
