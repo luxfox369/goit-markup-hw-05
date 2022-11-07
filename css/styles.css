@@ -200,7 +200,7 @@ a {
   
 }
 
-.header-nav-link.current:after {
+.header-nav-link.current::after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -750,6 +750,8 @@ a {
 
 .project-item:hover .overlay {
   transform: translatey(0);
+   /* transform:rotateY(360deg);
+   */
 }
 /* тумба для малюнка що закриє overlay при hover */
 .thumb {
@@ -768,7 +770,10 @@ a {
   justify-content: center;
   background-color: var(--accent-color--);
   transform: translateY(101%);
+  /* transform:rotateY(1deg); */
   transition: var(--tr--) 2000ms var(--func--);
+              /* var(--tr--) 2000ms var(--func--); */
+
 }
 
 .overlay-text-project {
@@ -777,7 +782,7 @@ a {
   letter-spacing: 0.03em;
   color: var(--prime-bg-color--);
   /* outline: 1px solid red; */
-  margin: 63px 24px;
+  padding: 63px 24px;
 }
 
 /* стилі footer*/
